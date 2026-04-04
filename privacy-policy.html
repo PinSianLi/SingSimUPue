@@ -3,125 +3,395 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>誠心有筊 - 隱私權政策</title>
+  <title>誠心有筊 | 隱私權政策</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #f0e4d0;
+      --ink: #4e392d;
+      --ink-soft: #776252;
+      --card: rgba(255, 250, 242, 0.82);
+      --line: #ccb79a;
+      --accent: #8c2f39;
+      --accent-soft: #b4646d;
+      --container: 1100px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
-      background-color: #EBE1CD;
-      color: #5E4638;
+      font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(900px 500px at 85% -10%, rgba(148, 92, 62, 0.2), transparent 60%),
+        radial-gradient(1000px 600px at -15% 15%, rgba(113, 60, 45, 0.14), transparent 62%),
+        var(--bg);
       line-height: 1.8;
       padding: 24px;
-      max-width: 720px;
+    }
+
+    a {
+      color: var(--accent);
+    }
+
+    .page {
+      max-width: var(--container);
       margin: 0 auto;
     }
-    h1 {
-      font-size: 1.75rem;
-      margin-bottom: 8px;
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 10px;
+      background: rgba(255, 248, 238, 0.8);
+      backdrop-filter: blur(8px);
+      margin-bottom: 18px;
+    }
+
+    .topbar .title-mini {
+      font-size: 0.82rem;
+      letter-spacing: 1.2px;
+      color: var(--ink-soft);
+      padding-left: 8px;
+    }
+
+    .topbar .links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .link-pill {
+      text-decoration: none;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff8ee;
+      color: var(--ink);
+      font-size: 0.82rem;
+      padding: 8px 12px;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    .link-pill:hover {
+      transform: translateY(-1px);
+      background: #fff1e0;
+    }
+
+    .hero {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: var(--card);
+      padding: clamp(20px, 3vw, 30px);
+      margin-bottom: 14px;
+      box-shadow: 0 12px 30px rgba(94, 70, 56, 0.14);
+    }
+
+    .hero h1 {
+      font-family: "Noto Serif TC", "PMingLiU", serif;
+      font-size: clamp(1.7rem, 4vw, 2.4rem);
       letter-spacing: 4px;
+      margin-bottom: 4px;
     }
-    h2 {
-      font-size: 1.15rem;
-      margin-top: 28px;
-      margin-bottom: 8px;
-      border-bottom: 1px solid #c4b8a5;
-      padding-bottom: 4px;
+
+    .hero p {
+      font-size: 0.92rem;
+      color: var(--ink-soft);
     }
-    p, li {
-      font-size: 0.95rem;
-      margin-bottom: 8px;
+
+    .quick-facts {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
     }
-    ul {
-      padding-left: 20px;
-      margin-bottom: 12px;
-    }
-    .subtitle {
-      font-size: 0.85rem;
-      color: #8a7a6c;
-      margin-bottom: 24px;
-    }
-    .footer {
-      margin-top: 40px;
-      padding-top: 16px;
-      border-top: 1px solid #c4b8a5;
+
+    .fact-chip {
       font-size: 0.8rem;
-      color: #8a7a6c;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 250, 242, 0.95);
+      color: var(--ink-soft);
     }
-    a { color: #9F353A; }
+
+    .actions {
+      margin-top: 14px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff8ee;
+      color: var(--ink);
+      font-size: 0.84rem;
+      letter-spacing: 0.3px;
+      padding: 8px 12px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .button:hover {
+      background: #fff1df;
+    }
+
+    .policy-wrap {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 12px;
+    }
+
+    .toc,
+    .content {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: var(--card);
+      box-shadow: 0 8px 24px rgba(94, 70, 56, 0.1);
+    }
+
+    .toc {
+      align-self: start;
+      position: sticky;
+      top: 16px;
+      padding: 14px;
+    }
+
+    .toc h2 {
+      font-size: 0.92rem;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      color: var(--ink-soft);
+    }
+
+    .toc ul {
+      list-style: none;
+      display: grid;
+      gap: 4px;
+    }
+
+    .toc a {
+      display: block;
+      text-decoration: none;
+      font-size: 0.88rem;
+      color: var(--ink);
+      border-radius: 8px;
+      padding: 6px 8px;
+      transition: background-color 0.2s ease;
+    }
+
+    .toc a:hover {
+      background: rgba(140, 47, 57, 0.08);
+    }
+
+    .content {
+      padding: 14px;
+      display: grid;
+      gap: 8px;
+    }
+
+    details {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: rgba(255, 250, 242, 0.9);
+      overflow: hidden;
+    }
+
+    summary {
+      cursor: pointer;
+      padding: 11px 13px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      background: rgba(255, 245, 230, 0.86);
+    }
+
+    .section-body {
+      padding: 12px 13px 13px;
+      font-size: 0.92rem;
+      color: var(--ink-soft);
+    }
+
+    .section-body p {
+      margin-bottom: 8px;
+    }
+
+    .section-body ul {
+      margin-left: 18px;
+      margin-bottom: 8px;
+    }
+
+    .section-body li {
+      margin-bottom: 4px;
+    }
+
+    .footer {
+      margin-top: 12px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--ink-soft);
+    }
+
+    @media (max-width: 960px) {
+      .policy-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .toc {
+        position: static;
+      }
+    }
   </style>
 </head>
 <body>
-  <h1>隱私權政策</h1>
-  <p class="subtitle">誠心有筊（Sîng Sim ū Pue）｜最後更新：2026 年 3 月 4 日</p>
+  <div class="page">
+    <header class="topbar">
+      <p class="title-mini">誠心有筊 SING SIM U PUE</p>
+      <nav class="links">
+        <a class="link-pill" href="index.html">返回介紹頁</a>
+        <a class="link-pill" href="mailto:somiltory@gmail.com">聯絡開發者</a>
+      </nav>
+    </header>
 
-  <h2>一、前言</h2>
-  <p>
-    「誠心有筊」（以下簡稱「本應用程式」）由品先開發，是一款 3D 擲筊模擬器工具。
-    我們非常重視您的隱私，本隱私權政策旨在說明本應用程式如何處理您的資料。
-  </p>
+    <section class="hero">
+      <h1>隱私權政策</h1>
+      <p>最後更新：2026 年 4 月 4 日</p>
+      <div class="quick-facts" aria-label="快速重點">
+        <span class="fact-chip">不建立帳號</span>
+        <span class="fact-chip">不含廣告追蹤</span>
+        <span class="fact-chip">資料以本機儲存為主</span>
+        <span class="fact-chip">可自行清除資料</span>
+      </div>
+      <div class="actions">
+        <button class="button" type="button" id="expandAll">展開全部章節</button>
+        <button class="button" type="button" id="collapseAll">收合全部章節</button>
+      </div>
+    </section>
 
-  <h2>二、資料收集</h2>
-  <p><strong>本應用程式不會收集、傳輸或儲存任何個人資料。</strong></p>
-  <p>具體而言：</p>
-  <ul>
-    <li>不收集姓名、電子郵件、電話號碼或任何個人識別資訊</li>
-    <li>不收集裝置識別碼、IP 位址或地理位置</li>
-    <li>不使用任何分析工具（Analytics）</li>
-    <li>不嵌入任何廣告或廣告追蹤 SDK</li>
-    <li>不連接任何遠端伺服器</li>
-  </ul>
+    <main class="policy-wrap">
+      <aside class="toc" aria-label="章節目錄">
+        <h2>章節目錄</h2>
+        <ul>
+          <li><a href="#s1">一、前言</a></li>
+          <li><a href="#s2">二、資料收集範圍</a></li>
+          <li><a href="#s3">三、本機資料儲存</a></li>
+          <li><a href="#s4">四、第三方服務與外部連結</a></li>
+          <li><a href="#s5">五、權限使用說明</a></li>
+          <li><a href="#s6">六、資料刪除與保存</a></li>
+          <li><a href="#s7">七、兒童隱私</a></li>
+          <li><a href="#s8">八、政策變更與聯絡方式</a></li>
+        </ul>
+      </aside>
 
-  <h2>三、本機資料儲存</h2>
-  <p>
-    本應用程式使用裝置本機儲存（AsyncStorage）保存以下資料，<strong>這些資料僅存在於您的裝置上</strong>，不會傳輸至任何外部伺服器：
-  </p>
-  <ul>
-    <li>您建立的自訂問題文字</li>
-    <li>擲筊歷史紀錄（問題、結果、時間）</li>
-    <li>應用程式設定偏好（聖筊次數、震動開關等）</li>
-  </ul>
-  <p>
-    您可以隨時透過應用程式內的「設定 → 清除所有歷史紀錄」功能刪除這些資料，或直接解除安裝應用程式以移除所有本機資料。
-  </p>
+      <section class="content" aria-label="隱私政策內容">
+        <details id="s1" open>
+          <summary>一、前言</summary>
+          <div class="section-body">
+            <p>「誠心有筊」（以下簡稱本應用程式）由 PinSian 開發，為問事流程輔助工具。我們重視您的隱私與資料自主權，並以最小化資料處理為原則。</p>
+          </div>
+        </details>
 
-  <h2>四、第三方服務</h2>
-  <p>
-    本應用程式<strong>不使用任何第三方服務</strong>，包括但不限於：
-  </p>
-  <ul>
-    <li>Google Analytics / Firebase</li>
-    <li>Facebook SDK</li>
-    <li>任何廣告網路</li>
-    <li>任何雲端儲存服務</li>
-  </ul>
+        <details id="s2" open>
+          <summary>二、資料收集範圍</summary>
+          <div class="section-body">
+            <p>本應用程式不建立會員帳號，亦不主動收集姓名、電話、電子郵件、身分證字號等個人識別資料。</p>
+            <ul>
+              <li>不提供廣告追蹤功能。</li>
+              <li>不使用分析工具追蹤個人行為。</li>
+              <li>不將問事內容上傳至開發者自有伺服器。</li>
+            </ul>
+          </div>
+        </details>
 
-  <h2>五、兒童隱私</h2>
-  <p>
-    本應用程式不會刻意收集任何年齡層使用者的個人資料，因此亦不涉及兒童隱私保護問題（COPPA）。
-  </p>
+        <details id="s3" open>
+          <summary>三、本機資料儲存</summary>
+          <div class="section-body">
+            <p>為提供功能，本應用程式會在您的裝置本機儲存必要資料：</p>
+            <ul>
+              <li>自訂問題內容。</li>
+              <li>擲筊歷史紀錄（問題、結果、時間與神明註記）。</li>
+              <li>設定偏好（震動、顯示模式、照片設定等）。</li>
+              <li>您自行選擇的供奉照片檔案（本機保存）。</li>
+            </ul>
+            <p>上述資料主要儲存在本機，不會自動同步到開發者端。</p>
+          </div>
+        </details>
 
-  <h2>六、權限使用</h2>
-  <p>本應用程式可能請求以下裝置權限：</p>
-  <ul>
-    <li><strong>震動（Vibration）</strong>：用於擲筊時的觸覺回饋，使用者可在設定中關閉</li>
-  </ul>
-  <p>本應用程式不請求網路存取、相機、麥克風、通訊錄或任何其他敏感權限。</p>
+        <details id="s4">
+          <summary>四、第三方服務與外部連結</summary>
+          <div class="section-body">
+            <p>本應用程式不含廣告 SDK 與個人化追蹤 SDK。</p>
+            <p>若您主動點擊外部連結（例如 Google Play 頁面、社群連結、電子郵件），將離開本應用程式並適用該第三方服務之隱私政策。</p>
+          </div>
+        </details>
 
-  <h2>七、政策變更</h2>
-  <p>
-    若本隱私權政策有任何變更，將於本頁面更新。建議您不定期查閱本頁面以瞭解最新資訊。
-  </p>
+        <details id="s5">
+          <summary>五、權限使用說明</summary>
+          <div class="section-body">
+            <p>本應用程式可能請求以下權限，僅用於對應功能：</p>
+            <ul>
+              <li>相片或媒體存取權限：供您選擇本機圖片作為供奉照片。</li>
+              <li>檔案存取權限（文件選擇器）：作為選圖流程的相容性備援。</li>
+              <li>震動權限：提供擲筊互動觸覺回饋，可於設定中關閉。</li>
+            </ul>
+          </div>
+        </details>
 
-  <h2>八、聯絡方式</h2>
-  <p>
-    若您對本隱私權政策有任何疑問，請透過以下方式聯繫：
-  </p>
-  <ul>
-    <li>電子郵件：<a href="mailto:somiltory@gmail.com">somiltory@gmail.com</a></li>
-  </ul>
+        <details id="s6">
+          <summary>六、資料刪除與保存</summary>
+          <div class="section-body">
+            <p>您可透過應用程式設定頁清除歷史與本機資料，或直接解除安裝應用程式以移除本機儲存內容。</p>
+          </div>
+        </details>
 
-  <div class="footer">
-    <p>© 2026 PinSian開發。保留所有權利。</p>
+        <details id="s7">
+          <summary>七、兒童隱私</summary>
+          <div class="section-body">
+            <p>本應用程式未以蒐集個人資料為目的，亦不針對兒童建立個資檔案。若您認為有不當資料處理情形，請透過聯絡方式告知我們。</p>
+          </div>
+        </details>
+
+        <details id="s8">
+          <summary>八、政策變更與聯絡方式</summary>
+          <div class="section-body">
+            <p>若本政策有更新，將於本頁面公告最新版本與更新日期。</p>
+            <p>聯絡信箱：<a href="mailto:somiltory@gmail.com">somiltory@gmail.com</a></p>
+          </div>
+        </details>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>© 2026 PinSian 開發. All Rights Reserved.</p>
+    </footer>
   </div>
+
+  <script>
+    const detailsList = Array.from(document.querySelectorAll('details'));
+    const expandAllButton = document.getElementById('expandAll');
+    const collapseAllButton = document.getElementById('collapseAll');
+
+    expandAllButton.addEventListener('click', () => {
+      detailsList.forEach((item) => {
+        item.open = true;
+      });
+    });
+
+    collapseAllButton.addEventListener('click', () => {
+      detailsList.forEach((item, index) => {
+        item.open = index < 3;
+      });
+    });
+  </script>
 </body>
 </html>
